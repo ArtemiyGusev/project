@@ -8,6 +8,7 @@ class TestLogin:
         assert 1 + 1 == 2
 
 
+
 if __name__ == '__main__':
 
     # 步骤1、--alluerdir 存放目录
