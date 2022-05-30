@@ -23,7 +23,7 @@ class TestPage1:
         assert self.driver.title == 'Google'
 
     @allure.feature('open page')
-    @allure.story('Открываем страницу google')
+    @allure.story('Открываем страницу google6')
     def test_yandex_search(self):
         self.driver.get('https://yandex.ru')
         assert self.driver.title == 'Яндекс'
