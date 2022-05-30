@@ -9,6 +9,7 @@ class TestLogin:
 
 
 if __name__ == '__main__':
+
     # 步骤1、--alluerdir 存放目录
     pytest.main(['test_func01.py', '-s', '--alluredir', '../report/tmp'])
 

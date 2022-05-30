@@ -1,0 +1,4 @@
+allure generate ./reportjson -o ./report --clean (формирование index.html)
+py.test test_ui.py --alluredir reportjson (запуск test_ui.py с генерацией json)
+py.test test_ui.py::test_google_search --alluredir reportjson (запуск test_ui.py::и функции с генерацией json)
+py.test --alluredir reportjson (запуск всех тестов и с генерацией json)
