@@ -22,7 +22,7 @@ class TestPage1:
             allure.attach(self.driver.get_screenshot_as_png(), name='Screenshot', attachment_type=AttachmentType.PNG)
         assert self.driver.title == 'Google'
 
-    @allure.feature('open pagei')
+    @allure.feature('open pagei1')
     @allure.story('Открываем страницу google6')
     def test_yandex_search(self):
         self.driver.get('https://yandex.ru')
