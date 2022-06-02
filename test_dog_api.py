@@ -34,7 +34,7 @@ def test_get_random_dog(dog_api):
 def test_get_random_breed_image(dog_api, breed):
     response = dog_api.get(f"breed/hound/{breed}/images/random")
 
-    with allure.step("Запрос отправлен. Десериализируем ответ из json в словарь."):
+    with allure.step("Запрос отправлен. Десериализируем ответ из json в словарь1."):
         response = response.json()
 
     assert breed in response["message"], f"Нет ссылки на фото с указанной породой, ответ {response}"
