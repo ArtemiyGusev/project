@@ -20,9 +20,10 @@ import json
 
 class TestSuite1(UiClient):
     @pytest.mark.parametrize("url", [
-        "urlGoogle",
-        "urlYande1x"
+        "urlGoogle"
+        #,"urlYande1x"
     ])
     def test_case1(self, url):
         UiClient.open_page_check_title(self, UiClient.tempJson(self, url))
         UiClient.assert_title(self, UiClient.tempJson(self, 'google'))
+        print(UiClient.get_text(self, UiClient.tempJson(self, 'elemText')))

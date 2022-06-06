@@ -27,6 +27,8 @@ exec_path = 'C:/chromedriver/chromedriver.exe'
 
 
 class UiClient:
+    # def __init__(self, element):
+    #     self.element = element
 
     def tempJson(self, name):
         with open('xPath.json') as f:
@@ -38,6 +40,18 @@ class UiClient:
 
     def teardown(self):
         self.driver.quit()
+
+
+    def find_element(self, element):
+        find = self.driver.find_element_by_xpath(element)
+        find = self.driver.find_element_by_id(element)
+        find = self.driver.find_element_by_link_text(element)
+        find = self.driver.find_element_by_partial_link_text(element)
+        find = self.driver.find_element_by_name(element)
+        find = self.driver.find_element_by_tag_name(element)
+        find = self.driver.find_element_by_class_name(element)
+        find = self.driver.find_element_by_css_selector(element)
+
 
     @allure.feature('open page')
     @allure.story('Открываем страницу google')
@@ -52,6 +66,13 @@ class UiClient:
     def assert_title(self, title):
         assert self.driver.title == title
 
+    @allure.feature('get text')
+    @allure.story('Получаем текст элемента')
+    def get_text(self, name):
+        element = self.driver.find_element_by_xpath(name).get_attribute('value')
+        if element is None:
+            element = self.driver.find_element_by_xpath(name).text
+        return element
     # @allure.feature('open pagei1')
     # @allure.story('Открываем страницу google')
     # def test_yandex_search(self):

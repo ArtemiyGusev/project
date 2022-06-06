@@ -2,5 +2,6 @@
   "urlYandex": "https://www.yandex.ru",
   "urlGoogle": "https://www.google.com",
   "url": "https://www.vk.com",
-  "google": "Google"
+  "google": "Google",
+  "elemText": "//*[@class='uU7dJb']"
 }
