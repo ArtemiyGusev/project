@@ -1,29 +1,28 @@
-import allure
-from allure_commons.types import AttachmentType
+import pytest
 
-from selenium import webdriver
-
-exec_path = 'C:/chromedriver/chromedriver.exe'
+from conftest import UiClient
+import json
 
 
-class TestPage1:
-    def setup(self):
-        self.driver = webdriver.Chrome(executable_path=exec_path)
+# def __init__(self, ini):
+#    self = ini
+# class initJson:
+    # def __init__(self, m):
+    #     self.name = m
+    # with open('xPath.json') as f:
+    #     temp = json.load(f)
+    #
+    # print(temp)
+    #
+    # for section, commands in temp.items():
+    #     print(section)
+    #     print('\n'.join(commands))
 
-    def teardown(self):
-        self.driver.quit()
-
-    @allure.feature('open page')
-    @allure.story('Открываем страницу google')
-    @allure.severity('normal')
-    def test_google_search(self):
-        self.driver.get('https://google.com')
-        with allure.step('Скрин'):
-            allure.attach(self.driver.get_screenshot_as_png(), name='Screenshot', attachment_type=AttachmentType.PNG)
-        assert self.driver.title == 'Google'
-
-    @allure.feature('open pagei1')
-    @allure.story('Открываем страницу google6')
-    def test_yandex_search(self):
-        self.driver.get('https://yandex.ru')
-        assert self.driver.title == 'Яндекс'
+class TestSuite1(UiClient):
+    @pytest.mark.parametrize("url", [
+        "urlGoogle",
+        "urlYande1x"
+    ])
+    def test_case1(self, url):
+        UiClient.open_page_check_title(self, UiClient.tempJson(self, url))
+        UiClient.assert_title(self, UiClient.tempJson(self, 'google'))
