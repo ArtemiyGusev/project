@@ -3,5 +3,6 @@
   "urlGoogle": "https://www.google.com",
   "url": "https://www.vk.com",
   "google": "Google",
-  "elemText": "//*[@class='uU7dJb']"
+  "elemText": "//*[@class='uU7dJb']",
+  "textSearch": "//*[@title='Поиск']"
 }

@@ -27,39 +27,34 @@ exec_path = 'C:/chromedriver/chromedriver.exe'
 
 
 class UiClient:
-    # def __init__(self, element):
-    #     self.element = element
+
+    # def __init__(self, dr):
+    #     self.driver = dr
+
+    #
+
+    def __init__(self):
+        self.driver = webdriver.Chrome(executable_path=exec_path)
 
     def tempJson(self, name):
         with open('xPath.json') as f:
             temp = json.load(f)
             return temp[name]
 
-    def setup(self):
-        self.driver = webdriver.Chrome(executable_path=exec_path)
+    # def setup(self):
+    #    self.driver = webdriver.Chrome(executable_path=exec_path)
 
     def teardown(self):
         self.driver.quit()
 
-
-    def find_element(self, element):
-        find = self.driver.find_element_by_xpath(element)
-        find = self.driver.find_element_by_id(element)
-        find = self.driver.find_element_by_link_text(element)
-        find = self.driver.find_element_by_partial_link_text(element)
-        find = self.driver.find_element_by_name(element)
-        find = self.driver.find_element_by_tag_name(element)
-        find = self.driver.find_element_by_class_name(element)
-        find = self.driver.find_element_by_css_selector(element)
-
-
     @allure.feature('open page')
-    @allure.story('Открываем страницу google')
+    @allure.story('Открываем страницу')
     @allure.severity('normal')
     def open_page_check_title(self, name):
         self.driver.get(name)
         with allure.step('Скрин'):
             allure.attach(self.driver.get_screenshot_as_png(), name='Screenshot', attachment_type=AttachmentType.PNG)
+        return self.driver.get(name)
 
     @allure.feature('assert Title')
     @allure.story('Проверяем Тайтл страницы')
@@ -72,9 +67,23 @@ class UiClient:
         element = self.driver.find_element_by_xpath(name).get_attribute('value')
         if element is None:
             element = self.driver.find_element_by_xpath(name).text
+        print(element)
         return element
-    # @allure.feature('open pagei1')
-    # @allure.story('Открываем страницу google')
-    # def test_yandex_search(self):
-    #     self.driver.get('https://yandex.ru')
-    #     assert self.driver.title == 'Яндекс'
+
+    @allure.feature('send text')
+    @allure.story('Ввод текста элементу')
+    def send_text(self, name, value):
+        self.driver.find_element_by_xpath(name).send_keys(UiClient.tempJson(self, value))
+
+#browser = UiClient()
+# @allure.feature('get_text_and_send_text')
+# @allure.story('Получаем текст элемента и вставляем в поле')
+# def get_text_and_send_text(self, name):
+#     element = browser.get_text(browser, browser.tempJson(name)).se
+
+
+# @allure.feature('open pagei1')
+# @allure.story('Открываем страницу google')
+# def test_yandex_search(self):
+#     self.driver.get('https://yandex.ru')
+#     assert self.driver.title == 'Яндекс'
